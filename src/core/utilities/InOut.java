@@ -17,7 +17,8 @@ import core.ShortestPath;
  * @version 1.0
  * @date 2014-08-28
  * 
- *       This class's purpose is mainly input / output / statistic routines Checking
+ *       This class's purpose is mainly input / output / statistic routines
+ *       Checking
  *
  */
 public class InOut {
@@ -85,11 +86,13 @@ public class InOut {
 	 * output some info about trial (best-so-far solution quality, time)
 	 */
 	public static void write_report() {
-		System.out.println("best " + Ants.best_so_far_ant.path_length + ", iteration: " + iteration + ", time "
+		System.out.println("best " + Ants.best_so_far_ant.path_length
+				+ ", iteration: " + iteration + ", time "
 				+ Timer.elapsed_time());
 		if (comp_report != null) {
-			printToFile(comp_report, "best " + Ants.best_so_far_ant.path_length + "\t iteration " + iteration
-					+ "\t solutions" + n_solutions + "\t time " + time_used);
+			printToFile(comp_report, "best " + Ants.best_so_far_ant.path_length
+					+ "\t iteration " + iteration + "\t solutions"
+					+ n_solutions + "\t time " + time_used);
 		}
 	}
 
@@ -142,7 +145,8 @@ public class InOut {
 			try {
 				writer.get(file.getName()).write(string + "\n");
 			} catch (IOException e) {
-				System.err.print("Could not write file " + file.getName() + " " + e.getMessage());
+				System.err.print("Could not write file " + file.getName() + " "
+						+ e.getMessage());
 				System.exit(1);
 			}
 		}
@@ -245,8 +249,9 @@ public class InOut {
 	}
 
 	/**
-	 * compute some population statistics like average path length, standard deviations, average distance,
-	 * branching-factor and output to a file gathering statistics
+	 * compute some population statistics like average path length, standard
+	 * deviations, average distance, branching-factor and output to a file
+	 * gathering statistics
 	 */
 	public static void population_statistics() {
 		Integer k;
@@ -262,7 +267,8 @@ public class InOut {
 		pop_stddev = Utilities.std_deviation(l, Ants.n_ants, pop_mean);
 
 		if (stat_report != null) {
-			printToFile(stat_report, iteration + "\t" + pop_mean + "\t" + pop_stddev + "\t" + (pop_stddev / pop_mean));
+			printToFile(stat_report, iteration + "\t" + pop_mean + "\t"
+					+ pop_stddev + "\t" + (pop_stddev / pop_mean));
 		}
 	}
 
@@ -272,7 +278,8 @@ public class InOut {
 	public static void output_solution() {
 		if (stat_report != null) {
 			for (int i = 0; i < Ants.best_so_far_ant.path.size(); i++) {
-				printToFile(stat_report, Ants.best_so_far_ant.path.get(i).toString());
+				printToFile(stat_report, Ants.best_so_far_ant.path.get(i)
+						.toString());
 			}
 		}
 	}
@@ -284,12 +291,15 @@ public class InOut {
 	 *            trial number
 	 */
 	public static void exit_try(int ntry) {
-		System.out.println("Best Solution in try " + ntry + " is " + Ants.best_so_far_ant.path_length);
+		System.out.println("Best Solution in try " + ntry + " is "
+				+ Ants.best_so_far_ant.path_length);
 
 		if (report != null)
-			printToFile(report, "Best: " + Ants.best_so_far_ant.path_length + "\t Iterations: " + found_best
-					+ "\t Time " + time_used + "\t Tot.time " + Timer.elapsed_time());
-		System.out.println(" Best Solution was found after " + found_best + " iterations\n");
+			printToFile(report, "Best: " + Ants.best_so_far_ant.path_length
+					+ "\t Iterations: " + found_best + "\t Time " + time_used
+					+ "\t Tot.time " + Timer.elapsed_time());
+		System.out.println(" Best Solution was found after " + found_best
+				+ " iterations\n");
 
 		best_in_try[ntry] = Ants.best_so_far_ant.path_length;
 		best_found_at[ntry] = found_best;
@@ -297,8 +307,9 @@ public class InOut {
 		time_total_run[ntry] = Timer.elapsed_time();
 		aw_best_path_in_try[ntry] = Ants.best_so_far_ant.path.toString();
 
-		System.out.println("\ntry " + ntry + ", Best " + best_in_try[ntry] + ", found at iteration "
-				+ best_found_at[ntry] + ", found at time " + time_best_found[ntry] + "\n");
+		System.out.println("\ntry " + ntry + ", Best " + best_in_try[ntry]
+				+ ", found at iteration " + best_found_at[ntry]
+				+ ", found at time " + time_best_found[ntry] + "\n");
 
 		if (comp_report != null)
 			printToFile(comp_report, "end try " + ntry + "\n");
@@ -318,30 +329,45 @@ public class InOut {
 		worst_path_length = Utilities.worst_of_vector(best_in_try, max_tries);
 
 		avg_cyc_to_bst = Utilities.meanr(best_found_at, max_tries);
-		stddev_iterations = Utilities.std_deviation(best_found_at, max_tries, avg_cyc_to_bst);
+		stddev_iterations = Utilities.std_deviation(best_found_at, max_tries,
+				avg_cyc_to_bst);
 
 		avg_sol_quality = Utilities.meanr(best_in_try, max_tries);
-		stddev_best = Utilities.std_deviation(best_in_try, max_tries, avg_sol_quality);
+		stddev_best = Utilities.std_deviation(best_in_try, max_tries,
+				avg_sol_quality);
 
 		t_avgbest = Utilities.meanr(time_best_found, max_tries);
 		System.out.println(" t_avgbest = " + t_avgbest);
-		t_stdbest = Utilities.std_deviationr(time_best_found, max_tries, t_avgbest);
+		t_stdbest = Utilities.std_deviationr(time_best_found, max_tries,
+				t_avgbest);
 
 		t_avgtotal = Utilities.meanr(time_total_run, max_tries);
 		System.out.println(" t_avgtotal = " + t_avgtotal);
-		t_stdtotal = Utilities.std_deviationr(time_total_run, max_tries, t_avgtotal);
+		t_stdtotal = Utilities.std_deviationr(time_total_run, max_tries,
+				t_avgtotal);
 
 		if (report != null) {
-			printToFile(report, "\nAverage-Best: " + avg_sol_quality + "\t Average-Iterations: " + avg_cyc_to_bst);
-			printToFile(report, "Stddev-Best: " + stddev_best + " \t Stddev Iterations: " + stddev_iterations);
-			printToFile(report, "Best try: " + best_path_length + "\t\t Worst try: " + worst_path_length);
-			printToFile(report, "\nAvg.time-best: " + t_avgbest + " stddev.time-best: " + t_stdbest);
-			printToFile(report, "\nAvg.time-Ants.total: " + t_avgtotal + " stddev.time-Ants.total: " + t_stdtotal);
+			printToFile(report, "\nAverage-Best: " + avg_sol_quality
+					+ "\t Average-Iterations: " + avg_cyc_to_bst);
+			printToFile(report, "Stddev-Best: " + stddev_best
+					+ " \t Stddev Iterations: " + stddev_iterations);
+			printToFile(report, "Best try: " + best_path_length
+					+ "\t\t Worst try: " + worst_path_length);
+			printToFile(report, "\nAvg.time-best: " + t_avgbest
+					+ " stddev.time-best: " + t_stdbest);
+			printToFile(report, "\nAvg.time-Ants.total: " + t_avgtotal
+					+ " stddev.time-Ants.total: " + t_stdtotal);
 
 			if (optimal > 0) {
-				printToFile(report, " excess best = " + ((double) (best_path_length - optimal) / (double) optimal)
-						+ ", excess average = " + ((double) (avg_sol_quality - optimal) / (double) optimal) + ","
-						+ " excess worst = " + ((double) (worst_path_length - optimal) / (double) optimal));
+				printToFile(
+						report,
+						" excess best = "
+								+ ((double) (best_path_length - optimal) / (double) optimal)
+								+ ", excess average = "
+								+ ((double) (avg_sol_quality - optimal) / (double) optimal)
+								+ ","
+								+ " excess worst = "
+								+ ((double) (worst_path_length - optimal) / (double) optimal));
 			}
 		}
 
@@ -352,7 +378,8 @@ public class InOut {
 			try {
 				writer.get(key).close();
 			} catch (IOException e) {
-				System.err.println("Could not close file " + key + " " + e.getMessage());
+				System.err.println("Could not close file " + key + " "
+						+ e.getMessage());
 			}
 		}
 	}
@@ -386,8 +413,9 @@ public class InOut {
 		}
 
 		/*
-		 * default setting for Ants.elitist_ants is 0; if EAS is applied and option Ants.elitist_ants is not used, we
-		 * set the default to Ants.elitist_ants = n
+		 * default setting for Ants.elitist_ants is 0; if EAS is applied and
+		 * option Ants.elitist_ants is not used, we set the default to
+		 * Ants.elitist_ants = n
 		 */
 		if (Ants.eas_flag && Ants.elitist_ants <= 0) {
 			Ants.elitist_ants = problem.graph.vertexSet().size();
@@ -401,19 +429,22 @@ public class InOut {
 				temp_buffer = "best." + problem.name;
 				// // TRACE ( System.out.println("%s\n",temp_buffer); )
 				report = new File(temp_buffer);
-				w = new OutputStreamWriter(new FileOutputStream(temp_buffer), "UTF8");
+				w = new OutputStreamWriter(new FileOutputStream(temp_buffer),
+						"UTF8");
 				writer.put(report.getName(), new BufferedWriter(w));
 
 				temp_buffer = "cmp." + problem.name;
 				// // TRACE ( System.out.println("%s\n",temp_buffer); )
 				comp_report = new File(temp_buffer);
-				w = new OutputStreamWriter(new FileOutputStream(temp_buffer), "UTF8");
+				w = new OutputStreamWriter(new FileOutputStream(temp_buffer),
+						"UTF8");
 				writer.put(comp_report.getName(), new BufferedWriter(w));
 
 				temp_buffer = "stat." + problem.name;
 				// // TRACE ( System.out.println("%s\n",temp_buffer); )
 				stat_report = new File(temp_buffer);
-				w = new OutputStreamWriter(new FileOutputStream(temp_buffer), "UTF8");
+				w = new OutputStreamWriter(new FileOutputStream(temp_buffer),
+						"UTF8");
 				writer.put(stat_report.getName(), new BufferedWriter(w));
 			} catch (IOException e) {
 				System.err.println("Could not write file. " + e.getMessage());

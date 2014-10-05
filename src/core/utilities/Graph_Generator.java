@@ -28,8 +28,8 @@ import au.com.bytecode.opencsv.CSVWriter;
 public class Graph_Generator {
 
 	/**
-	 * This function is used to construct a new simple directed weighted graph containing specified vertex number and
-	 * edge number
+	 * This function is used to construct a new simple directed weighted graph
+	 * containing specified vertex number and edge number
 	 * 
 	 * @param V_Number
 	 *            the number of vertex
@@ -37,8 +37,8 @@ public class Graph_Generator {
 	 *            the number of edge
 	 * @return a simple directed weighted graph
 	 */
-	public static SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> Generate_DAG(Integer V_Number,
-			Integer E_Number) {
+	public static SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> Generate_DAG(
+			Integer V_Number, Integer E_Number) {
 		if (E_Number > (V_Number * (V_Number - 1)) / 2) {
 			throw new IllegalArgumentException("Too many edges");
 		}
@@ -52,8 +52,10 @@ public class Graph_Generator {
 		SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> sdaGraph = new SimpleDirectedWeightedGraph<>(
 				DefaultWeightedEdge.class);
 
-		UniformIntegerDistribution vertexdistribution = new UniformIntegerDistribution(1, V_Number);
-		UniformIntegerDistribution weightDistribution = new UniformIntegerDistribution(1, 10);
+		UniformIntegerDistribution vertexdistribution = new UniformIntegerDistribution(
+				1, V_Number);
+		UniformIntegerDistribution weightDistribution = new UniformIntegerDistribution(
+				1, 10);
 
 		while (sdaGraph.edgeSet().size() < E_Number) {
 
@@ -86,7 +88,8 @@ public class Graph_Generator {
 		// and the a start and end vertex to this graph
 		for (Integer vertexindex : startvertexs) {
 			Double weight = weightDistribution.sample() * 1.0;
-			Graphs.addEdgeWithVertices(sdaGraph, startVertex, vertexindex, weight);
+			Graphs.addEdgeWithVertices(sdaGraph, startVertex, vertexindex,
+					weight);
 		}
 
 		for (Integer vertexindex : endvertexs) {
@@ -107,14 +110,16 @@ public class Graph_Generator {
 	 * @param file_path
 	 *            the path to store these files
 	 */
-	public static void write_graph_to_file(SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> graph,
+	public static void write_graph_to_file(
+			SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> graph,
 			Integer graph_id, String file_path) {
 		Integer v_number = graph.vertexSet().size();
 		Integer e_number = graph.edgeSet().size();
 		String file_name = "v" + v_number + "_e" + e_number + "_i" + graph_id;
 		try {
-			CSVWriter writer = new CSVWriter(new FileWriter(file_path + file_name + ".csv"),
-					CSVWriter.DEFAULT_SEPARATOR, CSVWriter.NO_QUOTE_CHARACTER);
+			CSVWriter writer = new CSVWriter(new FileWriter(file_path
+					+ file_name + ".csv"), CSVWriter.DEFAULT_SEPARATOR,
+					CSVWriter.NO_QUOTE_CHARACTER);
 
 			for (DefaultWeightedEdge edge : graph.edgeSet()) {
 				String[] entries = new String[3];
@@ -138,7 +143,8 @@ public class Graph_Generator {
 	 *            the file name
 	 * @return a simple directed weighted graph
 	 */
-	public static SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> read_graph_from_file(String filename) {
+	public static SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> read_graph_from_file(
+			String filename) {
 		SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> graph = new SimpleDirectedWeightedGraph<>(
 				DefaultWeightedEdge.class);
 
@@ -166,7 +172,8 @@ public class Graph_Generator {
 	}
 
 	/**
-	 * Generate the specified number of DAG graph with specified vertex number and edge number
+	 * Generate the specified number of DAG graph with specified vertex number
+	 * and edge number
 	 * 
 	 * @param DGA_Number
 	 *            the specified number of DAGs
@@ -177,7 +184,8 @@ public class Graph_Generator {
 	 * @param file_path
 	 *            the path to store these files
 	 */
-	public static void DAG_Files_Generator(Integer DAG_Number, Integer V_Number, Integer E_number, String file_path) {
+	public static void DAG_Files_Generator(Integer DAG_Number,
+			Integer V_Number, Integer E_number, String file_path) {
 		for (int i = 0; i < DAG_Number; i++) {
 			write_graph_to_file(Generate_DAG(V_Number, E_number), i, file_path);
 		}

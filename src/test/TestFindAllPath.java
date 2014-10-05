@@ -1,22 +1,14 @@
 package test;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
-
-import javax.management.Query;
 
 import org.jgrapht.Graphs;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.SimpleDirectedWeightedGraph;
-import org.jgrapht.traverse.BreadthFirstIterator;
-import org.jgrapht.traverse.DepthFirstIterator;
-
-import core.utilities.Graph_Generator;
 
 public class TestFindAllPath {
 
@@ -25,8 +17,10 @@ public class TestFindAllPath {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		// String filepath = "/Users/jiyuanshi/Downloads/SimpleDAG/v6_e8_i1.csv";
-		// SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> graph = Graph_Generator
+		// String filepath =
+		// "/Users/jiyuanshi/Downloads/SimpleDAG/v6_e8_i1.csv";
+		// SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> graph =
+		// Graph_Generator
 		// .read_graph_from_file(filepath);
 		SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> graph = new SimpleDirectedWeightedGraph<>(
 				DefaultWeightedEdge.class);
@@ -49,7 +43,8 @@ public class TestFindAllPath {
 			System.out.println(p);
 		}
 		System.out.println("find_all_path------------");
-		ArrayList<ArrayList<Integer>> paths = find_all_path(graph, 0, graph.vertexSet().size() - 1);
+		ArrayList<ArrayList<Integer>> paths = find_all_path(graph, 0, graph
+				.vertexSet().size() - 1);
 		for (ArrayList<Integer> p : paths) {
 			System.out.println(p);
 		}
@@ -57,7 +52,8 @@ public class TestFindAllPath {
 	}
 
 	public static ArrayList<ArrayList<Integer>> find_all_path(
-			SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> graph, Integer start_vertex, Integer end_vertex) {
+			SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> graph,
+			Integer start_vertex, Integer end_vertex) {
 		ArrayList<ArrayList<Integer>> all_paths = new ArrayList<>();
 		ArrayList<List<Integer>> successor_list = new ArrayList<>();
 		for (int i = 0; i < graph.vertexSet().size(); i++) {
@@ -80,9 +76,11 @@ public class TestFindAllPath {
 			} else {
 				if (successor_list.get(current_vertex).isEmpty()) {
 					stack.pop();
-					successor_list.set(current_vertex, Graphs.successorListOf(graph, current_vertex));
+					successor_list.set(current_vertex,
+							Graphs.successorListOf(graph, current_vertex));
 				} else {
-					Integer successor = successor_list.get(current_vertex).get(0);
+					Integer successor = successor_list.get(current_vertex).get(
+							0);
 					successor_list.get(current_vertex).remove(0);
 					stack.push(successor);
 				}
@@ -92,12 +90,14 @@ public class TestFindAllPath {
 		return all_paths;
 	}
 
-	public static void find_all_path1(SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> graph,
+	public static void find_all_path1(
+			SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> graph,
 			Integer start_vertex, Integer end_vertex, boolean[] visitedflag) {
 		// System.out.println("start: " + start_vertex + "--end " + end_vertex);
 		path.add(start_vertex);
 		visitedflag[start_vertex] = true;
-		List<Integer> successorList = Graphs.successorListOf(graph, start_vertex);
+		List<Integer> successorList = Graphs.successorListOf(graph,
+				start_vertex);
 		for (Integer successor : successorList) {
 			if (successor == end_vertex) {
 				ArrayList<Integer> new_path = new ArrayList<>();
@@ -125,7 +125,8 @@ public class TestFindAllPath {
 		queue.add(0);
 		while (!queue.isEmpty()) {
 			Integer current_vertex = queue.poll();
-			List<Integer> successorList = Graphs.successorListOf(graph, current_vertex);
+			List<Integer> successorList = Graphs.successorListOf(graph,
+					current_vertex);
 			for (Integer successor : successorList) {
 				if (!visitedflag[successor]) {
 					System.out.println(successor);
@@ -150,7 +151,8 @@ public class TestFindAllPath {
 				System.out.println(current_vertex);
 				visitedflag[current_vertex] = true;
 			}
-			List<Integer> successorList = Graphs.successorListOf(graph, current_vertex);
+			List<Integer> successorList = Graphs.successorListOf(graph,
+					current_vertex);
 			for (Integer successor : successorList) {
 				if (!visitedflag[successor]) {
 					stack.push(successor);

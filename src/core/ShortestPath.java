@@ -1,7 +1,5 @@
 package core;
 
-import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 
 import org.jgrapht.graph.DefaultWeightedEdge;
@@ -14,7 +12,8 @@ import core.utilities.Graph_Generator;
  * @version 1.0
  * @date 2014-08-26
  * 
- *       This class is used to describe a ShortestPath problem, including some related procedures and computation
+ *       This class is used to describe a ShortestPath problem, including some
+ *       related procedures and computation
  *
  */
 public class ShortestPath {

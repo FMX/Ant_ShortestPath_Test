@@ -1,15 +1,10 @@
 package test;
 
-import java.awt.List;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.apache.commons.math3.distribution.UniformIntegerDistribution;
 import org.jgrapht.Graphs;
@@ -39,14 +34,16 @@ public class Graph_Test {
 
 	}
 
-	public static void write_graph_to_file(SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> graph,
+	public static void write_graph_to_file(
+			SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> graph,
 			Integer graph_id) {
 		Integer v_number = graph.vertexSet().size();
 		Integer e_number = graph.edgeSet().size();
 		String file_name = "v" + v_number + "_e" + e_number + "_i" + graph_id;
 		try {
-			CSVWriter writer = new CSVWriter(new FileWriter(file_name + ".csv"), CSVWriter.DEFAULT_SEPARATOR,
-					CSVWriter.NO_QUOTE_CHARACTER);
+			CSVWriter writer = new CSVWriter(
+					new FileWriter(file_name + ".csv"),
+					CSVWriter.DEFAULT_SEPARATOR, CSVWriter.NO_QUOTE_CHARACTER);
 
 			for (DefaultWeightedEdge edge : graph.edgeSet()) {
 				String[] entries = new String[3];
@@ -63,7 +60,8 @@ public class Graph_Test {
 		}
 	}
 
-	public static SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> read_graph_from_file(String filename) {
+	public static SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> read_graph_from_file(
+			String filename) {
 		SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> graph = new SimpleDirectedWeightedGraph<>(
 				DefaultWeightedEdge.class);
 
@@ -71,7 +69,8 @@ public class Graph_Test {
 			CSVReader reader = new CSVReader(new FileReader(filename));
 			String[] nextLine;
 			while ((nextLine = reader.readNext()) != null) {
-				System.out.println(nextLine[0] + "-" + nextLine[1] + "-" + nextLine[2]);
+				System.out.println(nextLine[0] + "-" + nextLine[1] + "-"
+						+ nextLine[2]);
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -84,8 +83,8 @@ public class Graph_Test {
 		return graph;
 	}
 
-	public static SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> DAG_Generator(Integer V_Number,
-			Integer E_Number) {
+	public static SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> DAG_Generator(
+			Integer V_Number, Integer E_Number) {
 		if (E_Number > (V_Number * (V_Number - 1)) / 2) {
 			throw new IllegalArgumentException("Too many edges");
 		}
@@ -99,8 +98,10 @@ public class Graph_Test {
 		SimpleDirectedWeightedGraph<Integer, DefaultWeightedEdge> sdaGraph = new SimpleDirectedWeightedGraph<>(
 				DefaultWeightedEdge.class);
 
-		UniformIntegerDistribution vertexdistribution = new UniformIntegerDistribution(1, V_Number);
-		UniformIntegerDistribution weightDistribution = new UniformIntegerDistribution(1, 10);
+		UniformIntegerDistribution vertexdistribution = new UniformIntegerDistribution(
+				1, V_Number);
+		UniformIntegerDistribution weightDistribution = new UniformIntegerDistribution(
+				1, 10);
 		while (sdaGraph.edgeSet().size() < E_Number) {
 			Integer source = vertexdistribution.sample();
 			Integer target = vertexdistribution.sample();
@@ -128,7 +129,8 @@ public class Graph_Test {
 
 		for (Integer vertexindex : startvertexs) {
 			Double weight = weightDistribution.sample() * 1.0;
-			Graphs.addEdgeWithVertices(sdaGraph, startVertex, vertexindex, weight);
+			Graphs.addEdgeWithVertices(sdaGraph, startVertex, vertexindex,
+					weight);
 		}
 
 		for (Integer vertexindex : endvertexs) {

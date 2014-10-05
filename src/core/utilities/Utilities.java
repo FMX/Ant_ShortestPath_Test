@@ -178,7 +178,8 @@ public class Utilities {
 	}
 
 	/**
-	 * auxiliary routine for sorting an integer array: elements at position i and j of array are swapped
+	 * auxiliary routine for sorting an integer array: elements at position i
+	 * and j of array are swapped
 	 * 
 	 * @param v
 	 *            array
@@ -240,7 +241,8 @@ public class Utilities {
 	}
 
 	/**
-	 * FUNCTION: recursive routine (quicksort) for sorting one array; second arrays does the same sequence of swaps
+	 * FUNCTION: recursive routine (quicksort) for sorting one array; second
+	 * arrays does the same sequence of swaps
 	 * 
 	 * @param v
 	 *            two arrays, two indices
@@ -311,8 +313,8 @@ public class Utilities {
 	 */
 	public static double[][] generate_double_matrix(int n, int m)
 	/*
-	 * FUNCTION: malloc a matrix and return pointer to it INPUT: size of matrix as n x m OUTPUT: pointer to matrix
-	 * (SIDE)EFFECTS:
+	 * FUNCTION: malloc a matrix and return pointer to it INPUT: size of matrix
+	 * as n x m OUTPUT: pointer to matrix (SIDE)EFFECTS:
 	 */
 	{
 		return new double[n][m];

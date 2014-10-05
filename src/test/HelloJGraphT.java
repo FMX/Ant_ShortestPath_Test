@@ -39,12 +39,14 @@ public class HelloJGraphT {
 	}
 
 	/**
-	 * Creates a toy directed graph based on URL objects that represents link structure.
+	 * Creates a toy directed graph based on URL objects that represents link
+	 * structure.
 	 *
 	 * @return a graph based on URL objects.
 	 */
 	private static DirectedGraph<URL, DefaultEdge> createHrefGraph() {
-		DirectedGraph<URL, DefaultEdge> g = new DefaultDirectedGraph<URL, DefaultEdge>(DefaultEdge.class);
+		DirectedGraph<URL, DefaultEdge> g = new DefaultDirectedGraph<URL, DefaultEdge>(
+				DefaultEdge.class);
 
 		try {
 			URL amazon = new URL("http://www.amazon.com");
@@ -72,7 +74,8 @@ public class HelloJGraphT {
 	 * @return a graph based on String objects.
 	 */
 	private static UndirectedGraph<String, DefaultEdge> createStringGraph() {
-		UndirectedGraph<String, DefaultEdge> g = new SimpleGraph<String, DefaultEdge>(DefaultEdge.class);
+		UndirectedGraph<String, DefaultEdge> g = new SimpleGraph<String, DefaultEdge>(
+				DefaultEdge.class);
 
 		String v1 = "v1";
 		String v2 = "v2";
@@ -95,12 +98,14 @@ public class HelloJGraphT {
 	}
 
 	/**
-	 * Creates a toy directed graph based on URL objects that represents link structure.
+	 * Creates a toy directed graph based on URL objects that represents link
+	 * structure.
 	 *
 	 * @return a graph based on URL objects.
 	 */
 	private static DirectedGraph<URL, DefaultEdge> createHrefGraph1() {
-		DirectedGraph<URL, DefaultEdge> g = new DefaultDirectedGraph<URL, DefaultEdge>(DefaultEdge.class);
+		DirectedGraph<URL, DefaultEdge> g = new DefaultDirectedGraph<URL, DefaultEdge>(
+				DefaultEdge.class);
 
 		try {
 			URL amazon = new URL("http://www.amazon.com");
@@ -122,7 +127,8 @@ public class HelloJGraphT {
 	 * @return a graph based on String objects.
 	 */
 	private static UndirectedGraph<String, DefaultEdge> createStringGraph1() {
-		UndirectedGraph<String, DefaultEdge> g = new SimpleGraph<String, DefaultEdge>(DefaultEdge.class);
+		UndirectedGraph<String, DefaultEdge> g = new SimpleGraph<String, DefaultEdge>(
+				DefaultEdge.class);
 
 		String v1 = "v1";
 		String v2 = "v2";

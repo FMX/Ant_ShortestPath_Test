@@ -1,7 +1,5 @@
 package core;
 
-import org.jgrapht.Graphs;
-
 import core.utilities.InOut;
 
 /**
@@ -65,12 +63,14 @@ public class Ants {
 
 	/** calulation the heuristic information of edge */
 	public static Double HEURISTIC(Integer source, Integer target) {
-		return (1.0 / InOut.problem.graph.getEdgeWeight(InOut.problem.graph.getEdge(source, target)));
+		return (1.0 / InOut.problem.graph.getEdgeWeight(InOut.problem.graph
+				.getEdge(source, target)));
 	}
 
 	/**
-	 * allocate the memory for the ant colony, the best-so-far and the iteration best ant INPUT: none OUTPUT: none
-	 * (SIDE)EFFECTS: allocation of memory for the ant colony and two ants that store intermediate tours
+	 * allocate the memory for the ant colony, the best-so-far and the iteration
+	 * best ant INPUT: none OUTPUT: none (SIDE)EFFECTS: allocation of memory for
+	 * the ant colony and two ants that store intermediate tours
 	 */
 	public static void allocate_ants() {
 		Integer vertex_num = InOut.problem.graph.vertexSet().size();
