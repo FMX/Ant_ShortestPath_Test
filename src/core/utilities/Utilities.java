@@ -309,13 +309,13 @@ public class Utilities {
 	 * @param m
 	 * @return
 	 */
-	public static Double[][] generate_double_matrix(int n, int m)
+	public static double[][] generate_double_matrix(int n, int m)
 	/*
 	 * FUNCTION: malloc a matrix and return pointer to it INPUT: size of matrix as n x m OUTPUT: pointer to matrix
 	 * (SIDE)EFFECTS:
 	 */
 	{
-		return new Double[n][m];
+		return new double[n][m];
 	}
 
 	public static int aw_best_tour_index() {

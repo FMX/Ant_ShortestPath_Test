@@ -37,7 +37,7 @@ public class AlgControl {
 		InOut.n_solutions = 1;
 		InOut.iteration = 1;
 		InOut.restart_iteration = 1;
-		Ants.best_so_far_ant.path_length = Double.MAX_VALUE;
+		Ants.best_so_far_ant.tour_length = (int) Double.MAX_VALUE;
 
 		// Initialize the Pheromone trails, only if ACS is used, Ants.pheromones have to be initialized differently
 		if (!(Ants.acs_flag || Ants.bwas_flag)) {
